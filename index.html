@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>alisha_29patel · Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d12;
+    --paper: #f5f3ef;
+    --mist: #e8e4dc;
+    --sakura: #e8a4b8;
+    --sakura-dark: #c4607e;
+    --petal: #f9eef2;
+    --slate: #3a3a4a;
+    --ghost: #8a8a9a;
+    --gold: #c8a96e;
+    --gold-soft: #f0e4c8;
+    --line: rgba(0,0,0,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* DECORATIVE TOP BAND */
+  .top-band {
+    height: 3px;
+    background: linear-gradient(90deg, var(--sakura), var(--gold), var(--sakura));
+    position: relative;
+    z-index: 10;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER / HERO */
+  .hero {
+    padding: 56px 0 40px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: start;
+    border-bottom: 0.5px solid var(--line);
+    margin-bottom: 40px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  /* AVATAR */
+  .avatar-wrap {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+  }
+
+  .avatar-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: conic-gradient(var(--sakura), var(--gold), var(--sakura));
+    animation: spin 8s linear infinite;
+  }
+
+  .avatar-ring::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: var(--paper);
+    border-radius: 50%;
+  }
+
+  .avatar {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    z-index: 2;
+  }
+
+  .private-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    background: var(--ink);
+    border: 2px solid var(--paper);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  .private-badge svg { width: 10px; height: 10px; fill: var(--paper); }
+
+  /* PROFILE INFO */
+  .profile-info { padding-top: 4px; }
+
+  .username-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .username {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ghost);
+  }
+
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  /* STATS ROW */
+  .stats {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 16px;
+  }
+
+  .stat {
+    text-align: left;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    display: block;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ghost);
+    font-weight: 300;
+  }
+
+  /* STATUS PILL */
+  .status-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .pill-private {
+    background: var(--mist);
+    color: var(--slate);
+    border: 0.5px solid rgba(0,0,0,0.1);
+  }
+
+  .pill-personal {
+    background: var(--petal);
+    color: var(--sakura-dark);
+    border: 0.5px solid rgba(196,96,126,0.2);
+  }
+
+  .pill-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+  }
+
+  /* SECTION HEADER */
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+
+  .post-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--ghost);
+    letter-spacing: 0.06em;
+  }
+
+  /* POSTS GRID */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .post-card {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--mist);
+  }
+
+  .post-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .post-card:hover img { transform: scale(1.06); }
+
+  .post-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13,13,18,0);
+    transition: background 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .post-card:hover .post-overlay {
+    background: rgba(13,13,18,0.62);
+  }
+
+  .overlay-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .post-card:hover .overlay-stat {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .overlay-stat:nth-child(2) { transition-delay: 0.05s; }
+
+  .overlay-stat svg { width: 13px; height: 13px; fill: #fff; }
+
+  /* VIDEO BADGE */
+  .video-badge {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-badge svg { width: 9px; height: 9px; fill: var(--ink); margin-left: 1px; }
+
+  /* MODAL */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(13,13,18,0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-backdrop.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: var(--paper);
+    border-radius: 12px;
+    max-width: 560px;
+    width: 100%;
+    overflow: hidden;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 0.5px solid rgba(0,0,0,0.1);
+  }
+
+  .modal-backdrop.open .modal {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .modal-body {
+    padding: 20px 24px 24px;
+  }
+
+  .modal-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .modal-stats {
+    display: flex;
+    gap: 16px;
+  }
+
+  .modal-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--slate);
+  }
+
+  .modal-stat svg { width: 13px; height: 13px; fill: var(--slate); }
+
+  .modal-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--ghost);
+    letter-spacing: 0.04em;
+  }
+
+  .modal-caption {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--slate);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: var(--mist); }
+  .modal-close svg { width: 14px; height: 14px; stroke: var(--ink); fill: none; stroke-width: 2; }
+
+  /* DIVIDER ORNAMENT */
+  .ornament {
+    text-align: center;
+    margin: 48px 0 36px;
+    color: var(--sakura);
+    font-size: 18px;
+    letter-spacing: 0.3em;
+    animation: fadeUp 0.7s 0.15s ease both;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 0.5px solid var(--line);
+    margin-top: 48px;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .footer-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--ghost);
+    text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 480px) {
+    .hero { gap: 20px; padding: 36px 0 28px; }
+    .name { font-size: 22px; }
+    .posts-grid { gap: 6px; }
+    .stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-band"></div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
+      <img class="avatar" src="https://scontent-sea5-1.cdninstagram.com/v/t51.82787-19/605377394_18007675562827059_7380773924655508290_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=103&_nc_oc=Q6cZ2gGm1C--isoejgK0pty9zwkE-CoYBzeSXDUs_AgsgC8uYlFgzeeAWmOCVzeLabuIqHU&_nc_ohc=Kfw3hylMON4Q7kNvwEOuzfe&_nc_gid=fv7bBWgpELRGwc5xnfq4pQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af1dg-yVCS1KPCj4NO1oY80D5o96Ybdla4Twn7XSm12Ptg&oe=69DED10A&_nc_sid=8b3546" alt="Alisha Patel" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'96\' height=\'96\'%3E%3Ccircle cx=\'48\' cy=\'48\' r=\'48\' fill=\'%23e8e4dc\'/%3E%3Ctext x=\'48\' y=\'60\' text-anchor=\'middle\' font-size=\'36\' fill=\'%238a8a9a\' font-family=\'sans-serif\'%3EAP%3C/text%3E%3C/svg%3E'">
+      <div class="private-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 1C8.676 1 6 3.676 6 7v2H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V11a2 2 0 00-2-2h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10a2 2 0 110 4 2 2 0 010-4z"/></svg>
+      </div>
+    </div>
+
+    <div class="profile-info">
+      <div class="username-row">
+        <span class="username">@alisha_29patel</span>
+      </div>
+      <h1 class="name">Alisha Patel</h1>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num">83</span>
+          <span class="stat-label">Posts</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">56</span>
+          <span class="stat-label">Followers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">34</span>
+          <span class="stat-label">Following</span>
+        </div>
+      </div>
+      <div class="status-row">
+        <span class="pill pill-private"><span class="pill-dot"></span>Private</span>
+        <span class="pill pill-personal"><span class="pill-dot"></span>Personal Account</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORNAMENT -->
+  <div class="ornament">· · ✦ · ·</div>
+
+  <!-- POSTS -->
+  <div class="section-head">
+    <h2 class="section-title">Recent Posts</h2>
+    <span class="post-count">6 / 83 shown</span>
+  </div>
+
+  <div class="posts-grid" id="postsGrid"></div>
+
+  <div class="footer">
+    <p class="footer-text">Instagram · @alisha_29patel · Private Profile</p>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modal">
+    <div style="position:relative;">
+      <img class="modal-img" id="modalImg" src="" alt="">
+      <button class="modal-close" id="modalClose">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <div class="modal-stats">
+          <span class="modal-stat">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            <span id="modalLikes">—</span>
+          </span>
+          <span class="modal-stat">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            <span id="modalComments">—</span>
+          </span>
+        </div>
+        <span class="modal-date" id="modalDate">—</span>
+      </div>
+      <p class="modal-caption" id="modalCaption">—</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const posts = [
+  {
+    img: "https://scontent-sea1-1.cdninstagram.com/v/t51.71878-15/482786590_992557453012000_1490938380870659017_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gGm1C--isoejgK0pty9zwkE-CoYBzeSXDUs_AgsgC8uYlFgzeeAWmOCVzeLabuIqHU&_nc_ohc=btuAg7ozS0wQ7kNvwGPIH1t&_nc_gid=fv7bBWgpELRGwc5xnfq4pQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af0BRFOligjUOMKk34WsCCpx-cOmpIMHzjfAUo-DqN0yFQ&oe=69DEC38D&_nc_sid=8b3546",
+    type: "video", likes: 30, comments: 10,
+    caption: "Engagement Beauty....💙🥰\n\nFollow-@ayushimishra_makeover",
+    date: "Mar 6, 2025"
+  },
+  {
+    img: "https://scontent-sea1-1.cdninstagram.com/v/t51.82787-15/651789184_17938728096164516_3770397968419053183_n.webp?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gGm1C--isoejgK0pty9zwkE-CoYBzeSXDUs_AgsgC8uYlFgzeeAWmOCVzeLabuIqHU&_nc_ohc=NL8LxF5Jdu0Q7kNvwHuX9t1&_nc_gid=fv7bBWgpELRGwc5xnfq4pQ&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=MzU0OTU4NDAzNTEyOTM5NjA0MA%3D3-ccb7-5&oh=00_Af2zGIcX2j38FB0BHorIu2IGa0dv_lSeHTz6OrPSs8zP0g&oe=69DED170&_nc_sid=8b3546",
+    type: "image", likes: 180, comments: 17,
+    caption: "Bridal Makeup....❤️\n\nMakeup Artist-@ayushimishra_makeover",
+    date: "Jan 20, 2025"
+  },
+  {
+    img: "https://scontent-sea5-1.cdninstagram.com/v/t51.82787-15/648900645_17913771375315814_6471158464979936325_n.webp?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gGm1C--isoejgK0pty9zwkE-CoYBzeSXDUs_AgsgC8uYlFgzeeAWmOCVzeLabuIqHU&_nc_ohc=-uFg0h25hDUQ7kNvwFZTHab&_nc_gid=fv7bBWgpELRGwc5xnfq4pQ&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=MzU0NDQ5NzIwNDcwNDU5ODg0NA%3D3-ccb7-5&oh=00_Af1lvdyghZU1P99_A-fKZxifWvSlKzd9OoU8IUPj2_YV_Q&oe=69DEBE91&_nc_sid=8b3546",
+    type: "image", likes: 211, comments: 18,
+    caption: "Engagement Makeup....💙\n\nMakeup Artist-@ayushimishra_makeover",
+    date: "Jan 13, 2025"
+  },
+  {
+    img: "https://scontent-sea5-1.cdninstagram.com/v/t51.71878-15/470310661_1424230545201387_3186651289896967827_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=103&_nc_oc=Q6cZ2gGm1C--isoejgK0pty9zwkE-CoYBzeSXDUs_AgsgC8uYlFgzeeAWmOCVzeLabuIqHU&_nc_ohc=YjP3XnzZZk4Q7kNvwGFTIIb&_nc_gid=fv7bBWgpELRGwc5xnfq4pQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af2cqH1sHRAfDN7UTMWsQJv0sPqLCg2qWiQKxel8RmxF7Q&oe=69DED908&_nc_sid=8b3546",
+    type: "video", likes: 76, comments: 22,
+    caption: "My Gorgeous Classmate....❤️☺️\nThank you for trusting me....🫶🏻",
+    date: "Dec 16, 2024"
+  },
+  {
+    img: "https://scontent-sea5-1.cdninstagram.com/v/t51.2885-15/470009696_18260261359266607_8075145503428989845_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gGm1C--isoejgK0pty9zwkE-CoYBzeSXDUs_AgsgC8uYlFgzeeAWmOCVzeLabuIqHU&_nc_ohc=8BUnKxGMfDEQ7kNvwHNv4pg&_nc_gid=fv7bBWgpELRGwc5xnfq4pQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af341woPJbvN8Pg6Gs0m59eCaC_hjG7QEKK1cBMOxE0rqQ&oe=69DEC4F5&_nc_sid=8b3546",
+    type: "video", likes: 51, comments: 16,
+    caption: "Haldi Makeup....🔥\n\nMakeup Artist- @ayushimakeover_",
+    date: "Dec 14, 2024"
+  },
+  {
+    img: "https://scontent-sea5-1.cdninstagram.com/v/t51.71878-15/500474777_2718087188385574_1144284907460102349_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gGm1C--isoejgK0pty9zwkE-CoYBzeSXDUs_AgsgC8uYlFgzeeAWmOCVzeLabuIqHU&_nc_ohc=cZ4PyWCBBqgQ7kNvwG-l0ib&_nc_gid=fv7bBWgpELRGwc5xnfq4pQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af32QdZ4PNxKW4GJk3ZA_AHIL321Fi32XAf6fal5YdN6yw&oe=69DEECA1&_nc_sid=8b3546",
+    type: "video", likes: 67, comments: 24,
+    caption: "Engagement Beauty....🦋\n\nFollow-@ayushimishra_makeover",
+    date: "Dec 7, 2024"
+  }
+];
+
+const grid = document.getElementById('postsGrid');
+const backdrop = document.getElementById('modalBackdrop');
+const modalImg = document.getElementById('modalImg');
+const modalLikes = document.getElementById('modalLikes');
+const modalComments = document.getElementById('modalComments');
+const modalDate = document.getElementById('modalDate');
+const modalCaption = document.getElementById('modalCaption');
+
+posts.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'post-card';
+  card.style.animationDelay = `${0.25 + i * 0.07}s`;
+  card.style.animation = 'fadeUp 0.6s ease both';
+
+  const img = document.createElement('img');
+  img.src = p.img;
+  img.alt = p.caption.slice(0, 40);
+  img.loading = 'lazy';
+
+  const overlay = document.createElement('div');
+  overlay.className = 'post-overlay';
+  overlay.innerHTML = `
+    <div class="overlay-stat">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      ${p.likes}
+    </div>
+    <div class="overlay-stat">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      ${p.comments}
+    </div>`;
+
+  if (p.type === 'video') {
+    const badge = document.createElement('div');
+    badge.className = 'video-badge';
+    badge.innerHTML = `<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+    card.appendChild(badge);
+  }
+
+  card.appendChild(img);
+  card.appendChild(overlay);
+
+  card.addEventListener('click', () => openModal(p));
+  grid.appendChild(card);
+});
+
+function openModal(p) {
+  modalImg.src = p.img;
+  modalLikes.textContent = p.likes;
+  modalComments.textContent = p.comments;
+  modalDate.textContent = p.date;
+  modalCaption.textContent = p.caption;
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function closeModal() {
+  backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
