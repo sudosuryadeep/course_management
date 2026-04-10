@@ -31,7 +31,13 @@ const apiResponse = {
   error(res, message = "Internal server error", statusCode = 500, errors = null) {
     return res.status(statusCode).json({ success: false, message, errors });
   },
+
+  // ✅ sendError add kiya — error.middleware & auth.middleware use karta hai
+  sendError(res, message = "Something went wrong", statusCode = 500) {
+    return res.status(statusCode).json({ success: false, message });
+  },
 };
 
 module.exports = apiResponse;
 module.exports.ApiError = ApiError;
+module.exports.sendError = apiResponse.sendError; 

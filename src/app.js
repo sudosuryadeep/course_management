@@ -15,6 +15,7 @@ const semesterRoutes    = require("./modules/semester/semester.routes");
 const enrollmentRoutes  = require("./modules/enrollment/enrollment.routes");
 const gradeRoutes       = require("./modules/grade/grade.routes");
 const swaggerDocument = require("./docs/swagger");
+const authRoutes = require("./modules/auth/auth.routes");
 
 const app = express();
 
@@ -54,7 +55,11 @@ app.get("/api/v1", (req, res) => {
       "/students",
       "/courses",
       "/departments",
-      "/professors"
+      "/professors",
+      "/semesters",
+      "/enrollments",
+      "/grades",
+      "/auth"
     ]
   });
 });
@@ -72,7 +77,7 @@ app.use(`${API}/courses`,      courseRoutes);
 app.use(`${API}/semesters`,    semesterRoutes);
 app.use(`${API}/enrollments`,  enrollmentRoutes);
 app.use(`${API}/grades`,       gradeRoutes);
-
+app.use(`${API}/auth`,         authRoutes);
 // ── Error Handlers (must be last) ─────────────────────────────
 app.use(notFound);
 app.use(errorHandler);
