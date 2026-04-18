@@ -99,9 +99,12 @@ return { id: result.insertId, name, department_id };
   },
 
   async delete(id) {
-    await query(`DELETE FROM professors WHERE id = ?`, [id]);
-    return { id };
-  },
+  // pehle courses ka professor_id null karo
+  await query(`UPDATE courses SET professor_id = NULL WHERE professor_id = ?`, [id]);
+  // phir professor delete karo
+  await query(`DELETE FROM professors WHERE id = ?`, [id]);
+  return { id };
+},
 };
 
 module.exports = ProfessorModel;

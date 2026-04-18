@@ -21,15 +21,19 @@ const app = express();
 
 // ── Global Middlewares ─────────────────────────────────────────
 app.use(helmet());
+
+app.options("*", cors());
 app.use(
   cors({
     origin: process.env.ALLOWED_ORIGINS
       ? process.env.ALLOWED_ORIGINS.split(",")
       : "*",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization", "ngrok-skip-browser-warning"], // ← yeh add karo
+    credentials: true, 
   })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
